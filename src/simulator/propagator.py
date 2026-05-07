@@ -646,7 +646,7 @@ def solve(beam, ScalarDomain, probing_depth, *, return_E = False, parallelise = 
                 # transposed as jax.vmap() expects form of [batch_idx, items] not [items, batch_idx]
                 available_devices = jax.devices()
 
-                running_device = jax.lib.xla_bridge.get_backend().platform # - deprecated, using still as needed for HPC
+                running_device = jax.default_backend() # - deprecated, using still as needed for HPC
                 #running_device = jax.extend.backend.get_backend().platform
                 print("\nRunning device:", running_device, end='')
 

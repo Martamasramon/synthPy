@@ -172,8 +172,8 @@ def heat_plot(x, y, *, bin_scale = 1, pix_x = 3448, pix_y = 2574, Lx = 18, Ly = 
 
 def memory_report(running_device = None, memory_limit = None):
     if running_device is None:
-        from jax.lib import xla_bridge
-        running_device = xla_bridge.get_backend().platform
+        import jax
+        running_device = jax.default_backend()
 
     if running_device == 'cpu':
         from psutil import virtual_memory
