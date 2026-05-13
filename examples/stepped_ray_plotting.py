@@ -74,7 +74,6 @@ beam_type = 'circular'
 beam_definition = beam_initialiser.Beam(
     Np, beam_size, divergence, ne_extent,
     probing_direction = probing_direction,
-    wavelength = lwl,
     beam_type = "circular"
 )
 

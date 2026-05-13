@@ -127,7 +127,8 @@ def general_ray_plots(rf, nbins, lwl = 1032e-9, *, l_x = 0, u_x = 0.3, l_y = -5,
 
     axis[1].imshow(refractometer.H, cmap = 'hot', interpolation = 'nearest', clim = (0.5, 1))
 
-    plt.show()
+    plt.savefig("stepped_ray_plot.png", dpi=300, bbox_inches="tight")
+    print("Saved stepped_ray_plot.png")
 
 def stepped_ray_plot(rf, domain, sample_size = 32, *, indexing = "synthPy"):
     ##
@@ -187,7 +188,8 @@ def stepped_ray_plot(rf, domain, sample_size = 32, *, indexing = "synthPy"):
         ax.set_ylabel('x (m)')
         ax.set_zlabel('y (m)')
 
-        plt.show()
+        plt.savefig("stepped_ray_plot.png", dpi=300, bbox_inches="tight")
+    print("Saved stepped_ray_plot.png")
 
 def initial_field(domain, x, y, phases, amplitudes, pix_x, pix_y, title, savefig = False, fname = "hi"):
     from scipy.interpolate import LinearNDInterpolator as LND
@@ -207,7 +209,8 @@ def initial_field(domain, x, y, phases, amplitudes, pix_x, pix_y, title, savefig
     axs0.set_ylabel("y position (m)")
     axs0.set_title(title)
     fig0.colorbar(im, ax = axs0, orientation='vertical', fraction = .1)
-    plt.show()
+    plt.savefig("stepped_ray_plot.png", dpi=300, bbox_inches="tight")
+    print("Saved stepped_ray_plot.png")
     if savefig is True:
         plt.savefig(f"../../../{fname}.png",dpi=800, bbox_inches='tight', pad_inches=0.1)
 
@@ -219,7 +222,8 @@ def propagated_field(domain, x_pos, y_pos, z, phases, amplitudes, pix_x, pix_y, 
     axs.set_ylabel("y position (m)")
     axs.set_title(title)
     fig.colorbar(im, ax = axs, fraction = .05, pad = 0.08)
-    plt.show()
+    plt.savefig("stepped_ray_plot.png", dpi=300, bbox_inches="tight")
+    print("Saved stepped_ray_plot.png")
     if savefig is True:
         plt.savefig(f"../../../{fname}.png",dpi=800, bbox_inches='tight', pad_inches=0.1)
 
