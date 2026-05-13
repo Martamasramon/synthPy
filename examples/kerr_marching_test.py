@@ -10,7 +10,7 @@ config.jax_init()
 import simulator.beam as beam_initialiser
 import simulator.domain as d
 import simulator.nonlinear_propagator as nlp
-
+import simulator.propagator as p
 
 # -------------------------
 # Basic domain
@@ -31,7 +31,7 @@ zero_ne = np.zeros((n_cells, n_cells, n_cells))
 domain = d.ScalarDomain(
     lengths,
     n_cells,
-    ne=zero_ne,
+    ne_type="test_exponential_cos",
     probing_direction=probing_direction,
 )
 
@@ -57,14 +57,16 @@ beam = beam_initialiser.Beam(
 powers = [0.0, 1e6, 1e7, 1e8, 1e9]
 
 for power in powers:
-    final_state, history = nlp.solve_kerr_marching(
+    final_state, history, duration = p.solve(
         beam.s0,
         domain,
         probing_extent,
-        power=power,
-        n2=2.7e-20,
-        n0=1.33,
-        n_steps=256,
+        nonlinear = True,
+        kerr_power = power,
+        kerr_n2 = 2.7e-20,
+        kerr_n0 = 1.33,
+        kerr_steps = 256,
+        return_raw_results = True,
     )
 
     history = np.array(history)
